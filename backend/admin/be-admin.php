@@ -21,7 +21,6 @@ class Admin
     //LOGIN LOGIC
     public function loginLogic($adminId, $adminName, $adminPassword)
     {
-
         try {
             // Query untuk mendapatkan data admin berdasarkan id, nama, dan password
             $query = "SELECT * FROM tbadmin WHERE id = :id AND nama = :nama AND password = :password";
@@ -32,15 +31,20 @@ class Admin
             $stmt->bindParam(':nama', $adminName);
             $stmt->bindParam(':password', $adminPassword);
 
+            // Jalankan query
+            $stmt->execute();
 
-            // Cek apakah data ditemukan
-            if ($stmt->execute()) {
-                return true;
+            // Ambil data
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // Jika ada data yang ditemukan
+            if ($result) {
+                return true; // Login berhasil
             } else {
-                return false;
+                return false; // Login gagal
             }
         } catch (PDOException $error) {
-            die("Error : " . $error->getMessage());
+            die("Error: " . $error->getMessage());
         }
     }
 }
