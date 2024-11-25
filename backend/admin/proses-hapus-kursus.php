@@ -6,7 +6,7 @@
 
     $id = $_GET["id"];
 
-    $status = $pk->hapusData($id);
+    $status = $pk->hapusKursus($id);
 
     if($status==true)
         header("Location:../../frontend/admin/view-tampil-kursus.php");
