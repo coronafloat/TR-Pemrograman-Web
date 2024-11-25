@@ -11,7 +11,7 @@
             $id = $_GET["id"];
             
             //Memanggil method Select + Where
-            $dtk = $pk->tampilkanDataByID($id);
+            $dtk = $pk->tampilkanKursusByID($id);
 
             echo "<form method='post' action='../../backend/admin/proses-edit-kursus.php'>";
             //Unboxing dengan data yang disajikan didalam form
