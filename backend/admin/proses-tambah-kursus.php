@@ -12,7 +12,7 @@
     $e = $_POST["radStatus"];
 
     //Panggil function atau method
-    $status = $pk->tambahData($a, $b, $c, $d, $e);
+    $status = $pk->tambahKursus($a, $b, $c, $d, $e);
     if($status==true)
         header("Location:../../frontend/admin/view-tampil-kursus.php");
     else 
