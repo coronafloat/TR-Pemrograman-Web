@@ -13,7 +13,7 @@
     $f = $_POST["radStatus"];
 
     //Memanggil method
-    $status = $pk->ubahData($a, $b, $c, $d, $e, $f);
+    $status = $pk->ubahKursus($a, $b, $c, $d, $e, $f);
     if($status==true)
         header("Location:../../frontend/admin/view-tampil-kursus.php");
     else 
