@@ -1,5 +1,10 @@
 <html>
     <body>
+        <script>
+            function tambahData() {
+                window.location.href = "../../frontend/admin/view-tambah-kursus.php"
+            }
+        </script>
         <?php
             include "../../backend/admin/be-admin.php";
 
@@ -9,7 +14,7 @@
             $pk = new Admin();
 
             //Memanggil method
-            $dtk = $pk->tampilkanData();
+            $dtk = $pk->tampilkanKursus();
 
             //Buat table
             echo "<table border='1'>";
@@ -30,6 +35,8 @@
                     echo "</td>";
                 echo "</tr>";
             }
+            echo "</table><br>";
         ?>
+        <button onclick="tambahData()">Tambah</button>
     </body>
 </html>
