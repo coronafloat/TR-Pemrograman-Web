@@ -19,7 +19,7 @@
     </script>
 </head>
 
-<body
+<body>
     <h3>Ini adalah halaman Awal</h3>
     <h1>Selamat Datang di Kursus Mobil blablabla</h1>
     <h4>Pilih Role Anda</h4>
