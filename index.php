@@ -9,11 +9,11 @@
 
     <script>
         function adminPage() {
-            window.location.href = "../admin/view-login.php";
+            window.location.href = "frontend/admin/view-login.php";
         }
 
         function userPage() {
-            window.location.href = "../user/view-main-user.php";
+            window.location.href = "frontend/user/view-main-user.php";
 
         }
     </script>
