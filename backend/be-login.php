@@ -24,7 +24,7 @@ class admin
 
         try {
             // Query untuk mendapatkan data admin berdasarkan id, nama, dan password
-            $query = "SELECT * FROM tbadmin WHERE id = :id AND nama = :nama AND password = :password";
+            $query = "SELECT * FROM admin_profiles WHERE id = :id AND nama = :nama AND password = :password";
             $stmt = $this->db->prepare($query);
 
             // Bind parameter
