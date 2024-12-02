@@ -10,12 +10,11 @@
     $c = $_POST["txtKursus"];
     $d = $_POST["txtTanggal"];
     $e = $_POST["txtWaktu"];
-    $f = $_POST["radStatus"];
 
     //Memanggil method
-    $status = $pk->ubahKursus($a, $b, $c, $d, $e, $f);
+    $status = $pk->ubahKursus($a, $b, $c, $d, $e);
     if($status==true)
-        header("Location:../../frontend/admin/view-tampil-kursus.php");
+        header("Location:../../frontend/admin/view-dashboard.php");
     else 
         echo "Gagal Mengubah Data.";
 ?>
