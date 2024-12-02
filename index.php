@@ -25,7 +25,7 @@
 
 <body class="bg-[#F1F0E8]">
 
-  <!-- Navbar -->
+  <!-- NAVBAR -->
   <nav class="bg-white shadow-md py-2 sticky top-0">
     <div class="max-w-screen-xl mx-auto px-6 flex items-center justify-between">
       <!-- Logo -->
@@ -35,7 +35,7 @@
 
       <!-- Menu -->
       <div class="md:flex items-center space-x-6">
-        <a href="#" class="text-gray-700 font-medium hover:text-[#89A8B2]">Home</a>
+        <a href="index.php" class="text-gray-700 font-medium hover:text-[#89A8B2]">Home</a>
         <a href="#" class="text-gray-700 font-medium hover:text-[#89A8B2]">About</a>
         <a href="#" class="text-gray-700 font-medium hover:text-[#89A8B2]">Contact Us</a>
         <!-- Button Login -->
@@ -49,6 +49,7 @@
       </div>
     </div>
   </nav>
+  <!-- End of NAVBAR -->
 
   <!-- Banner content -->
   <section class="bg-[url('assets/belajar-mobil3.jpg')] bg-cover bg-center bg-no-repeat mt-1/2">

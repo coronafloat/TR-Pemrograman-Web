@@ -94,4 +94,59 @@ class User
         }
     }
     // End of SIGN UP LOGIC
+
+    //Read Jadwal Tersedia
+    public function jadwalReady()
+    {
+        //query SQL
+        $query = $this->db->prepare("SELECT * FROM jadwal_ready");
+
+        //menjalankan Query
+        $query->execute();
+
+        //meletakkan hasil query ke array
+        $data = $query->fetchAll();
+
+        return $data;
+    }
+    //End of Read Jadwal Tersedia
+
+    // Pesan Kursus (CREATE)
+    public function pesanKursus($idUser, $namaKursus, $namaUser, $tanggal, $waktu, $status)
+    {
+        $query = $this->db->prepare(
+            "INSERT INTO jadwal_kursus_user(idUser, namaKursus, namaUser, tanggal, waktu, status)
+            values(:idUser, :namaKursus, :namaUser, :tanggal, :waktu, :status)
+            "
+        );
+
+        $query->bindParam(":idUser", $idUser);
+        $query->bindParam(":namaKursus", $namaKursus);
+        $query->bindParam(":namaUser", $namaUser);
+        $query->bindParam(":tanggal", $tanggal);
+        $query->bindParam(":waktu", $waktu);
+        $query->bindParam(":status", $status);
+
+        if ($query->execute()) {
+            # code...
+            return true;
+        } else {
+            return false;
+        }
+    }
+    // End of Pesan Kursus (CREATE)
+
+    // TAMPIL DATA
+    public function tampilData($idUser)
+    {
+        $query = $this->db->prepare(
+            "SELECT * FROM jadwal_kursus_user WHERE idUser=:idUser"
+        );
+        $query->bindParam(":idUser", $idUser);
+        $query->execute();
+
+        $data = $query->fetchAll();
+        return $data;
+    }
+    // End of TAMPIL DATA
 }

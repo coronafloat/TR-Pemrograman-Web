@@ -1,4 +1,5 @@
 <?php
+include "../../backend/user/kelas-user.php";
 session_start();
 
 if (!isset($_SESSION["user_logged_in"]) || $_SESSION["user_logged_in"] == false) {
@@ -7,6 +8,11 @@ if (!isset($_SESSION["user_logged_in"]) || $_SESSION["user_logged_in"] == false)
 
 //Mengambil nama user yang login 
 $namaUser = $_SESSION["user_name"];
+
+$kursus = new User();
+
+//call method
+$tampilData = $kursus->tampilData($_SESSION["user_id"]);
 
 ?>
 
@@ -39,21 +45,55 @@ $namaUser = $_SESSION["user_name"];
             <!-- Menu -->
             <div class="md:flex items-center space-x-6">
                 <a href="view-create-user.php" class="text-gray-700 font-medium hover:text-[#89A8B2]">Pesan Kursus</a>
-                <a href="view-read-user.php" class="text-gray-700 font-medium hover:text-[#89A8B2]">Lihat Jadwal</a>
+                <a href="view-read-user.php" class="text-black font-medium hover:text-[#89A8B2]">Lihat Jadwal</a>
                 <!-- Button Login -->
                 <button onclick="logOutPage()" class="flex items-center border-2 border-black bg-white text-black font-medium rounded-lg px-4 py-2 hover:bg-[#E3E7EA] transition duration-300">
                     Log out
                 </button>
 
                 <!-- TODO: Ambil nama dari user yang login -->
-                <p>Welcome, <?php echo htmlspecialchars($namaUser); ?>!</p>
+                <p class="font-bold">Welcome, <?php echo htmlspecialchars($namaUser); ?>!</p>
             </div>
         </div>
     </nav>
     <!-- End of Header -->
 
     <!-- Main Content -->
-    <p>Akan berisi Pilih, pesan, lihat kursus</p>
+    <div class="flex flex-col items-center">
+        <h2 class="text-2xl font-semibold mb-4">Jadwal Kursus</h2>
+        <div class="overflow-x-auto w-full max-w-screen-lg">
+            <table class="min-w-full bg-white border border-gray-300">
+                <thead>
+                    <tr class="bg-black text-white text-center">
+                        <th class="py-2 px-4 border-b">ID JADWAL</th>
+                        <th class="py-2 px-4 border-b">ID USER</th>
+                        <th class="py-2 px-4 border-b">NAMA KURSUS</th>
+                        <th class="py-2 px-4 border-b">NAMA USER</th>
+                        <th class="py-2 px-4 border-b">TANGGAL</th>
+                        <th class="py-2 px-4 border-b">WAKTU</th>
+                        <th class="py-2 px-4 border-b">STATUS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    //unboxing array
+                    foreach ($tampilData as $jadwal) {
+                        echo "<tr class='hover:bg-gray-100 text-center'>";
+                        echo "<td class='py-2 px-4 border-b'>" . htmlspecialchars($jadwal["idJadwalKursus"]) . "</td>";
+                        echo "<td class='py-2 px-4 border-b'>" . htmlspecialchars($jadwal["idUser"]) . "</td>";
+                        echo "<td class='py-2 px-4 border-b'>" . htmlspecialchars($jadwal["namaKursus"]) . "</td>";
+                        echo "<td class='py-2 px-4 border-b'>" . htmlspecialchars($jadwal["namaUser"]) . "</td>";
+                        echo "<td class='py-2 px-4 border-b'>" . htmlspecialchars($jadwal["tanggal"]) . "</td>";
+                        echo "<td class='py-2 px-4 border-b'>" . htmlspecialchars($jadwal["waktu"]) . "</td>";
+                        echo "<td class='py-2 px-4 border-b'>" . htmlspecialchars($jadwal["status"]) . "</td>";
+
+                        echo "</tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <!-- End of Main Content -->
 
     <!-- Footer -->
