@@ -64,15 +64,39 @@
         }
 
         //INSERT
-        public function tambahKursus($a,$b,$c,$d){
-            $query=$this->db->prepare("INSERT INTO tbjadwalkursus (namaUser,kursus,tanggal,waktu) VALUES(:namaUser,:kursus,:tanggal,:waktu)");
-            $query->bindParam(":namaUser",$a);
-            $query->bindParam(":kursus",$b);
-            $query->bindParam(":tanggal",$c);
-            $query->bindParam(":waktu",$d);
+        public function tambahKursus($a, $b, $c, $d) {
+            try {
+                // Masukkan data ke tabel tbjadwalkursus
+                $query = $this->db->prepare("INSERT INTO tbjadwalkursus (namaUser, kursus, tanggal, waktu) VALUES(:namaUser, :kursus, :tanggal, :waktu)");
+                $query->bindParam(":namaUser", $a);
+                $query->bindParam(":kursus", $b);
+                $query->bindParam(":tanggal", $c);
+                $query->bindParam(":waktu", $d);
 
-            if($query->execute()) return true;
-            else return false;
+                if ($query->execute()) {
+                    // Jika kursus adalah 'Mobil', pindahkan data ke tabel tbmobil
+                    if ($b == 'Mobil') {
+                        $sql_transfer = "INSERT INTO tbmobil (idJadwal, namaUser, kursus, tanggal, waktu)SELECT idJadwal, namaUser, kursus, tanggal, waktu
+                                        FROM tbjadwalkursus WHERE kursus = 'Mobil'";
+                        $transfer_query = $this->db->prepare($sql_transfer);
+                        $transfer_query->execute();
+                    }
+
+                    // Jika kursus adalah 'Motor', pindahkan data ke tabel tbmotor
+                    if ($b == 'Motor') {
+                        $sql_transfer = "INSERT INTO tbmotor (idJadwal, namaUser, kursus, tanggal, waktu)SELECT idJadwal, namaUser, kursus, tanggal, waktu
+                                        FROM tbjadwalkursus WHERE kursus = 'Motor'";
+                        $transfer_query = $this->db->prepare($sql_transfer);
+                        $transfer_query->execute();
+                    }
+
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (PDOException $e) {
+                die("Error: " . $e->getMessage());
+            }
         }
 
         //UPDATE
