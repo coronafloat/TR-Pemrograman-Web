@@ -26,14 +26,13 @@
     }
 
     //LOGIN LOGIC
-    public function loginLogic($idUser, $nama, $password) {
+    public function loginLogic($nama, $password) {
         try {
         // Query untuk mendapatkan data admin berdasarkan id, nama, dan password
-        $query = "SELECT * FROM user_profiles WHERE idUser = :idUser AND nama = :nama AND password = :password";
+        $query = "SELECT * FROM user_profiles WHERE nama = :nama AND password = :password";
         $stmt = $this->db->prepare($query);
 
         // Bind parameter
-        $stmt->bindParam(':idUser', $idUser);
         $stmt->bindParam(':nama', $nama);
         $stmt->bindParam(':password', $password);
 
@@ -56,49 +55,61 @@
         // End of LOGIN LOGIC
 
         // SignUp Logic
-        public function signUpLogic($idUser, $nama, $password)
-        {
+    public function signUpLogic($nama, $password){
         try {
-        // Mengecek apakah ID pengguna sudah ada
-        $queryCheck = "SELECT * FROM user_profiles WHERE idUser = :idUser";
-        $stmtCheck = $this->db->prepare($queryCheck);
-        $stmtCheck->bindParam(':idUser', $idUser);
-        $stmtCheck->execute();
+            // Mengecek apakah nama pengguna sudah ada
+            $queryCheck = "SELECT * FROM user_profiles WHERE nama = :nama";
+            $stmtCheck = $this->db->prepare($queryCheck);
+            $stmtCheck->bindParam(':nama', $nama); // Perbaikan di sini
+            $stmtCheck->execute();
 
-        if ($stmtCheck->rowCount() > 0) {
-        // ID sudah digunakan, tampilkan alert dan redirect
-        echo "<script>alert('ID pengguna sudah terdaftar.'); window.location.href='../../frontend/user/view-signup-user.php';</script>";
-        return;
+            if ($stmtCheck->rowCount() > 0) {
+                // nama sudah digunakan, tampilkan alert dan redirect
+                echo "<script>alert('Nama pengguna sudah terdaftar.'); window.location.href='../../frontend/user/view-signup-user.php';</script>";
+                return;
+            }
+
+            // Query untuk menambahkan data pengguna baru
+            $queryInsert = "INSERT INTO user_profiles (nama, password) VALUES (:nama, :password)";
+            $stmtInsert = $this->db->prepare($queryInsert);
+
+            // Bind parameter
+            $stmtInsert->bindParam(':nama', $nama);
+            $stmtInsert->bindParam(':password', $password); // Menyimpan password dalam plaintext
+
+            // Eksekusi query untuk insert data
+            $stmtInsert->execute();
+
+            // Setelah pendaftaran berhasil, beri tahu user dan arahkan mereka ke halaman login
+            echo "<script>
+                        alert('Pendaftaran berhasil. Silakan login.'); 
+                        window.location.href='../../frontend/user/view-login-user.php';
+                    </script>";
+        } catch (PDOException $error) {
+                die("Error: " . $error->getMessage());
         }
-
-        // Query untuk menambahkan data pengguna baru
-        $queryInsert = "INSERT INTO user_profiles (idUser, nama, password) VALUES (:idUser, :nama, :password)";
-        $stmtInsert = $this->db->prepare($queryInsert);
-
-        // Bind parameter
-        $stmtInsert->bindParam(':idUser', $idUser);
-        $stmtInsert->bindParam(':nama', $nama);
-        $stmtInsert->bindParam(':password', $password);  // Menyimpan password dalam plaintext
-
-        // Eksekusi query untuk insert data
-        $stmtInsert->execute();
-
-    // Setelah pendaftaran berhasil, beri tahu user dan arahkan mereka ke halaman login
-    echo "<script>
-                alert('Pendaftaran berhasil. Silakan login.'); 
-                window.location.href='../../frontend/user/view-login-user.php';
-            </script>";
-    } catch (PDOException $error) {
-    die("Error: " . $error->getMessage());
     }
-    }
-    // End of SIGN UP LOGIC
+        // End of SIGN UP LOGIC
 
         //Read Jadwal Tersedia
-        public function jadwalReady()
+        public function jadwalReadyMobil()
         {
             //query SQL
-            $query = $this->db->prepare("SELECT * FROM jadwal_ready");
+            $query = $this->db->prepare("SELECT * FROM jadwal_ready WHERE namaJadwal='Mobil'");
+
+            //menjalankan Query
+            $query->execute();
+
+            //meletakkan hasil query ke array
+            $data = $query->fetchAll();
+
+            return $data;
+        }
+
+        public function jadwalReadyMotor()
+        {
+            //query SQL
+            $query = $this->db->prepare("SELECT * FROM jadwal_ready WHERE namaJadwal='Motor'");
 
             //menjalankan Query
             $query->execute();
@@ -111,17 +122,18 @@
         //End of Read Jadwal Tersedia
 
         // Pesan Kursus (CREATE)
-        public function pesanKursus($idUser, $namaKursus, $namaUser, $tanggal, $waktu, $status)
+        public function pesanKursus($idUser, $namaKursus, $namaUser, $idJadwal, $tanggal, $waktu, $status)
         {
             $query = $this->db->prepare(
-                "INSERT INTO jadwal_kursus_user(idUser, namaKursus, namaUser, tanggal, waktu, status)
-                values(:idUser, :namaKursus, :namaUser, :tanggal, :waktu, :status)
+                "INSERT INTO jadwal_kursus_user(idUser, namaKursus, namaUser, idJadwal, tanggal, waktu, status)
+                values(:idUser, :namaKursus, :namaUser, :idJadwal, :tanggal, :waktu, :status)
                 "
             );
 
             $query->bindParam(":idUser", $idUser);
             $query->bindParam(":namaKursus", $namaKursus);
             $query->bindParam(":namaUser", $namaUser);
+            $query->bindParam(":idJadwal", $idJadwal);
             $query->bindParam(":tanggal", $tanggal);
             $query->bindParam(":waktu", $waktu);
             $query->bindParam(":status", $status);
@@ -136,10 +148,38 @@
         // End of Pesan Kursus (CREATE)
 
         // TAMPIL DATA
-        public function tampilData($idUser)
+        public function tampilDataMobil()
         {
+            // Pastikan idUser diambil dari sesi
+            if (!isset($_SESSION["user_id"])) {
+                // Jika idUser tidak tersedia, kembalikan array kosong
+                return [];
+            }
+
+            $idUser = $_SESSION["user_id"];
+
             $query = $this->db->prepare(
-                "SELECT * FROM jadwal_kursus_user WHERE idUser=:idUser"
+                "SELECT * FROM jadwal_kursus_user WHERE idUser = :idUser AND namaKursus = 'Mobil'"
+            );
+            $query->bindParam(":idUser", $idUser);
+            $query->execute();
+
+            $data = $query->fetchAll();
+            return $data;
+        }
+
+        public function tampilDataMotor()
+        {
+            // Pastikan idUser diambil dari sesi
+            if (!isset($_SESSION["user_id"])) {
+                // Jika idUser tidak tersedia, kembalikan array kosong
+                return [];
+            }
+
+            $idUser = $_SESSION["user_id"];
+
+            $query = $this->db->prepare(
+                "SELECT * FROM jadwal_kursus_user WHERE idUser = :idUser AND namaKursus = 'Motor'"
             );
             $query->bindParam(":idUser", $idUser);
             $query->execute();

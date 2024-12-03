@@ -29,7 +29,7 @@ session_start();
 
             <!-- Menu -->
             <div class="md:flex items-center space-x-6">
-                <a href="../../frontend/user/index.php" class="text-gray-700 font-medium hover:text-[#89A8B2]">Home</a>
+                <a href="../../index.php" class="text-gray-700 font-medium hover:text-[#89A8B2]">Home</a>
                 <a href="about-us.php" class="text-gray-700 font-medium hover:text-[#89A8B2]">About</a>
                 <a href="#" onclick="window.open('https://wa.me/6287724061150?text=Hi, Saya ingin menghubungi Anda!', '_blank')" class="text-gray-700 font-medium hover:text-[#89A8B2]">Contact Us</a>
                 <!-- Button Login -->
@@ -46,10 +46,10 @@ session_start();
         <div class="bg-white rounded-lg shadow-md p-8 w-96">
             <h1 class="text-2xl font-semibold text-center mb-6">Sign Up User</h1>
             <form method="post" action="../../backend/user/proses-signup-user.php">
-                <div class="mb-4">
+                <!-- <div class="mb-4">
                     <label class="block text-gray-700" for="idUser">ID</label>
                     <input type="text" name="idUser" id="idUser" required class="mt-1 p-2 border border-gray-300 rounded w-full">
-                </div>
+                </div> -->
 
                 <div class="mb-4">
                     <label class="block text-gray-700" for="nama">Nama</label>

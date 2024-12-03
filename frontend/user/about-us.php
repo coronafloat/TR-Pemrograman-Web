@@ -48,8 +48,8 @@
 
             <!-- Menu -->
             <div class="md:flex items-center space-x-6">
-                <a href="../../frontend/user/index.php" class="text-gray-700 font-medium hover:text-[#89A8B2]">Home</a>
-                <a href="../../about-us.php" class="text-gray-700 font-medium hover:text-[#89A8B2]">About</a>
+                <a href="../../index.php" class="text-gray-700 font-medium hover:text-[#89A8B2]">Home</a>
+                <a href="about-us.php" class="text-gray-700 font-medium hover:text-[#89A8B2]">About</a>
                 <a href="#" onclick="window.open('https://wa.me/6287724061150?text=Hi, saya ingin menghubungi Anda!', '_blank')" class="text-gray-700 font-medium hover:text-[#89A8B2]">Contact Us</a>
                 <!-- Button Login -->
                 <button class="flex items-center border-2 border-black bg-white text-black font-medium rounded-lg px-4 py-2 hover:bg-[#E3E7EA] transition duration-300" onclick="adminPage()">
