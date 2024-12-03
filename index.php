@@ -12,7 +12,7 @@
 
   <script>
     function userPage() {
-      window.location.href = "frontend/user/view-main-user.php";
+      window.location.href = "frontend/user/view-create-user.php";
     }
 
     function signUpPage() {
