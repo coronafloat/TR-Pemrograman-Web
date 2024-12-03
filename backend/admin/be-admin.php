@@ -1,7 +1,7 @@
 <?php
     class Admin {
         public $host = "127.0.0.1";
-        public $name = "dbkursus_user";
+        public $name = "dbkursus";
         public $user = "root";
         public $pass = "";
 
