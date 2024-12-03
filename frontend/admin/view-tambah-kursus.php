@@ -29,6 +29,7 @@
                 text-align: left;
                 width: 100%;
                 max-width: 400px;
+                font-size: 14px;
             }
 
             form input[type="text"],
@@ -53,7 +54,7 @@
             }
 
             form input[type="submit"] {
-                background-color: #89A8B2;
+                background-color: #000;
                 color: #FFFFFF;
                 border: none;
                 padding: 12px 20px;
@@ -66,14 +67,7 @@
             }
 
             form input[type="submit"]:hover {
-                background-color: #6D8A96;
-            }
-
-            form label {
-                display: block;
-                font-weight: bold;
-                margin-bottom: 5px;
-                color: #1b1b1b;
+                background-color: #3d3d3d;
             }
 
             .bg-white {
@@ -82,7 +76,7 @@
                 justify-content: flex-end;
                 align-items: flex-end;  
                 text-align: right;
-                margin-top: 620px;        
+                margin-top: 680px;        
                 margin-bottom: 40px;
                 margin-right: 40px;
                 margin-left: 40px;
@@ -92,9 +86,10 @@
     </head>
     <body>
         <form method="post" action="../../backend/admin/proses-tambah-kursus.php">
-            Nama  <input type="text" name="txtNama"><br><br>
+            ID  <input type="text" name="txtId" placeholder="Masukkan ID"><br><br>
+            Nama  <input type="text" name="txtNama" placeholder="Masukkan Nama"><br><br>
             Kursus
-            <select name="txtKursus" id="kursus">
+            <select name="txtKursus" id="namaKursus">
                 <option value="Mobil">Mobil</option>
                 <option value="Motor">Motor</option>
             </select><br><br>

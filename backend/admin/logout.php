@@ -6,6 +6,6 @@
     session_destroy();
 
     // Arahkan kembali ke halaman login
-    header("Location: ../../frontend/user/index.php");
+    header("Location: ../../frontend/admin/view-login.php");
     exit();
 ?>

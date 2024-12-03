@@ -7,9 +7,9 @@
     $admin = new Admin();
 
     //UNBOXING - SET PARAMETER
-    $idProses = $_POST["idAdmin"];
-    $namaProses = $_POST["namaAdmin"];
-    $passwordProses = $_POST["passwordAdmin"];
+    $idProses = $_POST["id"];
+    $namaProses = $_POST["nama"];
+    $passwordProses = $_POST["password"];
 
     //CALL METHOD
     $status = $admin->loginLogic($idProses, $namaProses, $passwordProses);
@@ -22,7 +22,7 @@
         header("Location: ../../frontend/admin/view-dashboard.php");
     } else {
         echo "<script>
-        alert('Login Gagal. ID, Username atau Password Anda Salah!');
+        alert('Login Gagal. Silakan cek ID, Nama, atau Password Anda.');
         window.location.href = '../../frontend/admin/view-login.php';
         </script>";
     

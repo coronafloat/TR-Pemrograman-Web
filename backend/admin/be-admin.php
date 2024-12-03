@@ -1,7 +1,7 @@
 <?php
     class Admin {
         public $host = "127.0.0.1";
-        public $name = "dbkursus";
+        public $name = "dbkursus_user";
         public $user = "root";
         public $pass = "";
 
@@ -22,13 +22,13 @@
         {
             try {
                 // Query untuk mendapatkan data admin berdasarkan id, nama, dan password
-                $query = "SELECT * FROM tbadmin WHERE idAdmin = :idAdmin AND namaAdmin = :namaAdmin AND passwordAdmin = :passwordAdmin";
+                $query = "SELECT * FROM admin_profiles WHERE idAdmin = :idAdmin AND nama = :nama AND password= :password";
                 $stmt = $this->db->prepare($query);
 
                 // Bind parameter
                 $stmt->bindParam(':idAdmin', $adminId);
-                $stmt->bindParam(':namaAdmin', $adminName);
-                $stmt->bindParam(':passwordAdmin', $adminPassword);
+                $stmt->bindParam(':nama', $adminName);
+                $stmt->bindParam(':password', $adminPassword);
 
                 // Jalankan query
                 $stmt->execute();
@@ -51,10 +51,10 @@
         //Method
         public function tampilkanKursus($kategori = '') {
             if ($kategori) {
-                $query = $this->db->prepare("SELECT * FROM tbjadwalkursus WHERE kursus LIKE :kategori");
+                $query = $this->db->prepare("SELECT * FROM jadwal_kursus_user WHERE namaKursus LIKE :kategori");
                 $query->bindParam(':kategori', $kategori);
             } else {
-                $query = $this->db->prepare("SELECT * FROM tbjadwalkursus");
+                $query = $this->db->prepare("SELECT * FROM jadwal_kursus_user");
             }
             
             $query->execute();
@@ -64,28 +64,29 @@
         }
 
         //INSERT
-        public function tambahKursus($a, $b, $c, $d) {
+        public function tambahKursus($a, $b, $c, $d, $e) {
             try {
                 // Masukkan data ke tabel tbjadwalkursus
-                $query = $this->db->prepare("INSERT INTO tbjadwalkursus (namaUser, kursus, tanggal, waktu) VALUES(:namaUser, :kursus, :tanggal, :waktu)");
-                $query->bindParam(":namaUser", $a);
-                $query->bindParam(":kursus", $b);
-                $query->bindParam(":tanggal", $c);
-                $query->bindParam(":waktu", $d);
+                $query = $this->db->prepare("INSERT INTO jadwal_kursus_user (idJadwalKursus, namaUser, namaKursus, tanggal, waktu) VALUES(:idJadwalKursus, :namaUser, :namaKursus, :tanggal, :waktu)");
+                $query->bindParam(":idJadwalKursus", $a);
+                $query->bindParam(":namaUser", $b);
+                $query->bindParam(":namaKursus", $c);
+                $query->bindParam(":tanggal", $d);
+                $query->bindParam(":waktu", $e);
 
                 if ($query->execute()) {
                     // Jika kursus adalah 'Mobil', pindahkan data ke tabel tbmobil
                     if ($b == 'Mobil') {
-                        $sql_transfer = "INSERT INTO tbmobil (idJadwal, namaUser, kursus, tanggal, waktu)SELECT idJadwal, namaUser, kursus, tanggal, waktu
-                                        FROM tbjadwalkursus WHERE kursus = 'Mobil'";
+                        $sql_transfer = "INSERT INTO tbmobil (idJadwalKursus, namaUser, namaKursus, tanggal, waktu) SELECT idJadwalKursus, namaUser, namaKursus, tanggal, waktu
+                                        FROM jadwal_kursus_user WHERE namaKursus = 'Mobil'";
                         $transfer_query = $this->db->prepare($sql_transfer);
                         $transfer_query->execute();
                     }
 
                     // Jika kursus adalah 'Motor', pindahkan data ke tabel tbmotor
                     if ($b == 'Motor') {
-                        $sql_transfer = "INSERT INTO tbmotor (idJadwal, namaUser, kursus, tanggal, waktu)SELECT idJadwal, namaUser, kursus, tanggal, waktu
-                                        FROM tbjadwalkursus WHERE kursus = 'Motor'";
+                        $sql_transfer = "INSERT INTO tbmotor (idJadwalKursus, namaUser, namaKursus, tanggal, waktu) SELECT idJadwalKursus, namaUser, namaKursus, tanggal, waktu
+                                        FROM jadwal_kursus_user WHERE namaKursus = 'Motor'";
                         $transfer_query = $this->db->prepare($sql_transfer);
                         $transfer_query->execute();
                     }
@@ -105,8 +106,8 @@
             2. Update
         */
         public function tampilkanKursusByID($id){
-            $query = $this->db->prepare("SELECT * FROM tbjadwalkursus WHERE idJadwal=:idJadwal");
-            $query->bindParam(":idJadwal",$id);
+            $query = $this->db->prepare("SELECT * FROM jadwal_kursus_user WHERE idJadwalKursus=:idJadwalKursus");
+            $query->bindParam(":idJadwalKursus",$id);
             $query->execute();
 
             $data=$query->fetchAll();
@@ -114,10 +115,10 @@
         }
 
         public function ubahKursus($a,$b,$c,$d,$e){
-            $query = $this->db->prepare("UPDATE tbjadwalkursus SET namaUser=:namaUser,kursus=:kursus,tanggal=:tanggal,waktu=:waktu WHERE idJadwal=:idJadwal");
-            $query->bindParam(":idJadwal",$a);
+            $query = $this->db->prepare("UPDATE jadwal_kursus_user SET namaUser=:namaUser,namaKursus=:namaKursus,tanggal=:tanggal,waktu=:waktu WHERE idJadwalKursus=:idJadwalKursus");
+            $query->bindParam(":idJadwalKursus",$a);
             $query->bindParam(":namaUser",$b);
-            $query->bindParam(":kursus",$c);
+            $query->bindParam(":namaKursus",$c);
             $query->bindParam(":tanggal",$d);
             $query->bindParam(":waktu",$e);
 
@@ -127,8 +128,8 @@
 
         //DELETE
         public function hapusKursus($id){
-            $query = $this->db->prepare("DELETE FROM tbjadwalkursus where idJadwal=:idJadwal");
-            $query->bindParam(":idJadwal",$id);
+            $query = $this->db->prepare("DELETE FROM jadwal_kursus_user where idJadwalKursus=:idJadwalKursus");
+            $query->bindParam(":idJadwalKursus",$id);
 
             if($query->execute()) return true;
             else return false;

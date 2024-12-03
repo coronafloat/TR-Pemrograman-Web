@@ -30,6 +30,7 @@
                 text-align: left;
                 width: 100%;
                 max-width: 400px;
+                font-size: 14px;
             }
 
             form input[type="text"],
@@ -45,7 +46,7 @@
             }
 
             form input[type="submit"] {
-                background-color: #89A8B2;
+                background-color: #000;
                 color: #FFFFFF;
                 border: none;
                 padding: 12px 20px;
@@ -58,7 +59,7 @@
             }
 
             form input[type="submit"]:hover {
-                background-color: #6D8A96;
+                background-color: #3d3d3d;
             }
 
             form label {
@@ -74,7 +75,7 @@
                 justify-content: flex-end;
                 align-items: flex-end;  
                 text-align: right;
-                margin-top: 630px;        
+                margin-top: 660px;        
                 margin-bottom: 40px;
                 margin-right: 40px;
                 margin-left: 40px;
@@ -98,8 +99,8 @@
             echo "<form method='post' action='../../backend/admin/proses-edit-kursus.php'>";
             //Unboxing dengan data yang disajikan didalam form
             foreach($dtk as $d) {
-                echo "ID : ".$d["idJadwal"];
-                echo "<input type='hidden' name='txtId' value='".$d["idJadwal"]."'>";
+                echo "ID : ".$d["idJadwalKursus"];
+                echo "<input type='hidden' name='txtId' value='".$d["idJadwalKursus"]."'>";
                 echo "<br><br>";
 
                 echo "Nama ";

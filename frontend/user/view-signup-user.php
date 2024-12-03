@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 ?>
 <html>
@@ -11,7 +12,7 @@ session_start();
 
     <script>
         function loginPage() {
-            window.location.href = "view-login-user.php";
+            window.location.href = "../../frontend/user/view-login-user.php";
         }
     </script>
 </head>
@@ -28,9 +29,9 @@ session_start();
 
             <!-- Menu -->
             <div class="md:flex items-center space-x-6">
-                <a href="../../index.php" class="text-gray-700 font-medium hover:text-[#89A8B2]">Home</a>
-                <a href="#" class="text-gray-700 font-medium hover:text-[#89A8B2]">About</a>
-                <a href="#" class="text-gray-700 font-medium hover:text-[#89A8B2]">Contact Us</a>
+                <a href="../../frontend/user/index.php" class="text-gray-700 font-medium hover:text-[#89A8B2]">Home</a>
+                <a href="about-us.php" class="text-gray-700 font-medium hover:text-[#89A8B2]">About</a>
+                <a href="#" onclick="window.open('https://wa.me/6287724061150?text=Hi, Saya ingin menghubungi Anda!', '_blank')" class="text-gray-700 font-medium hover:text-[#89A8B2]">Contact Us</a>
                 <!-- Button Login -->
                 <button onclick="loginPage()" class="flex items-center border-2 border-black bg-white text-black font-medium rounded-lg px-4 py-2 hover:bg-[#E3E7EA] transition duration-300">
                     Log in
@@ -61,7 +62,7 @@ session_start();
                 </div>
 
                 <!-- SUBMIT BUTTON -->
-                <button type="submit" class="w-full bg-black text-white font-semibold py-2 rounded-lg hover:bg-[#3E4143] transition duration-200 mt-4">
+                <button onclick="loginPage()" type="submit" class="w-full bg-black text-white font-semibold py-2 rounded-lg hover:bg-[#3E4143] transition duration-200 mt-4">
                     Submit
                 </button>
             </form>
@@ -76,7 +77,6 @@ session_start();
                 <div class="flex justify-center text-teal-600 sm:justify-start">
                     <img src="../../assets/logo-prorider.png" alt="Logo ProRider" class="h-12">
                 </div>
-
                 <p class="mt-4 text-center text-sm text-black lg:mt-0 lg:text-right">
                     Copyright &copy; 2024. All rights reserved.
                 </p>

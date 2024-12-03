@@ -1,94 +1,45 @@
 <?php
-    session_start();
+session_start();
 ?>
-    <html>
+<html lang="id">
 
-    <head>
-        <title>Admin Login</title>
-        <!-- <link rel="stylesheet" href="view-login.css"> -->
-        <link rel="icon" href="../../assets/favicon-logo.png" type="image/png">
-        <style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #F1F0E8;
+        }
+        
+    </style>
+</head>
 
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #F1F0E8;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                margin: 0;
-            }
-
-            form {
-                background-color: white;
-                border: 2px solid #E5E1DA;
-                border-radius: 10px;
-                padding: 30px 40px;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-                width: 320px;
-            }
-
-            form h1 {
-                font-size: 24px;
-                font-weight: bold;
-                margin-bottom: 20px;
-                text-align: center;
-                color: #1b1b1b;
-            }
-
-            form input[type="text"],
-            form input[type="password"] {
-                width: 100%;
-                padding: 10px;
-                margin: 10px 0;
-                border: 1px solid #C4C4C4;
-                border-radius: 5px;
-                font-size: 14px;
-                background-color: #FFFFFF;
-                color: #1b1b1b;
-            }
-
-            form input[type="submit"] {
-                background-color: #89A8B2;
-                color: #FFFFFF;
-                border: none;
-                padding: 12px 20px;
-                border-radius: 5px;
-                font-size: 16px;
-                cursor: pointer;
-                margin-top: 20px;
-                width: 100%;
-                transition: background-color 0.3s ease;
-            }
-
-            form input[type="submit"]:hover {
-                background-color: #6D8A96;
-            }
-        </style>
-    </head>
-
-    <body>
+<body class="flex items-center justify-center min-h-screen bg-[#F1F0E8]">
+    <div class="bg-white shadow-md rounded-lg p-8 w-96">
+        <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
         <form method="post" action="../../backend/admin/login-proses.php">
-            ID
-            <input type="text" name="idAdmin" required>
-            <br><br>
+            <div class="mb-4">
+                <label for="id" class="block text-sm font-medium text-gray-700">ID</label>
+                <input type="text" name="id" id="id" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-500" placeholder="Masukkan ID">
+            </div>
 
-            Username
-            <input type="text" name="namaAdmin" required>
-            <br><br>
+            <div class="mb-4">
+                <label for="nama" class="block text-sm font-medium text-gray-700">Nama</label>
+                <input type="text" name="nama" id="nama" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-500" placeholder="Masukkan Nama">
+            </div>
 
-            Password
-            <input type="password" name="passwordAdmin" required>
-            <br><br>
+            <div class="mb-4">
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" name="password" id="password" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-500" placeholder="Masukkan Password">
+            </div>
 
-            <!-- SUBMIT BUTTON -->
-            <input type="submit" value="Submit">
+            <div class="flex justify-between">
+                <input type="submit" value="Submit" class="w-full bg-black text-white font-medium rounded-lg px-4 py-2 hover:bg-gray-500 transition duration-300 mt-5">
+            </div>
         </form>
-    </body>
+    </div>
+</body>
 
-    </html>
+</html>

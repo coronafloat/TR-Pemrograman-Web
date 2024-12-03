@@ -24,7 +24,7 @@
         .sidebar {
             width: 200px;
             height: 100vh;
-            background-color: #1b1b1b;
+            background-color: #000;
             position: fixed;
             top: 0;
             left: 0;
@@ -65,18 +65,21 @@
         .navbar button {
             padding: 10px 20px;
             font-size: 1rem;
-            border: none;
+            border: 2px solid #1b1b1b;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.2s;
-            background-color: #89A8B2;
-            color: white;
+            background-color: #F1F0E8;
+            color: black;
+            font-weight: bold;
         }
 
         .navbar button:hover {
-            background-color: #6D8A96;
-            color: white;
+            border: 2px solid #000;
+            background-color: #dedede;
+            color: black;
             border-radius: 5px;
+            font-weight: bold;
         }
 
         .table-container {
@@ -107,7 +110,7 @@
         }
 
         th {
-            background-color: #89A8B2;
+            background-color: #000;
             color: #fff;
             font-weight: bold;
         }
@@ -117,7 +120,7 @@
             font-size: 15px;
             border-radius: 5px;
             cursor: pointer;
-            background-color: #89A8B2;
+            background-color: #000;
             color: white;
             border: none; 
             text-decoration: none;
@@ -125,7 +128,7 @@
         }
 
         button:hover, button a:hover {
-            background-color: #6D8A96;
+            background-color: #3d3d3d;
             color: white;
             border-radius: 5px;
             border: none;
@@ -168,7 +171,7 @@
     <div class="content">
         <div class="navbar">
             <span>Selamat Datang, <?php echo htmlspecialchars($_SESSION['admin_name']); ?>!</span>
-            <button onclick="logoutPage()">LOGOUT</button>
+            <button onclick="logoutPage()">Log out</button>
         </div>
 
         <div class="table-container">
@@ -180,19 +183,19 @@
                 $dtk = $pk->tampilkanKursus();
 
                 echo "<table>";
-                echo "<tr> <th>ID JADWAL</th> <th>ID USER</th> <th>NAMA</th> <th>KURSUS</th> <th>TANGGAL</th> <th>WAKTU</th> <th>AKSI</th> </tr>";
+                echo "<tr> <th>ID JADWAL</th> <th>ID USER</th> <th>KURSUS</th> <th>NAMA</th> <th>TANGGAL</th> <th>WAKTU</th> <th>AKSI</th> </tr>";
 
                 foreach ($dtk as $d) {
                     echo "<tr>";
-                        echo "<td>" .$d["idJadwal"]. "</td>";
+                        echo "<td>" .$d["idJadwalKursus"]. "</td>";
                         echo "<td>" .$d["idUser"]. "</td>";
+                        echo "<td>" .$d["namaKursus"]. "</td>";
                         echo "<td>" .$d["namaUser"]. "</td>";
-                        echo "<td>" .$d["kursus"]. "</td>";
                         echo "<td>" .$d["tanggal"]. "</td>";
                         echo "<td>" .$d["waktu"]. "</td>";
                         echo "<td>";
-                            echo "<button><a href='../../frontend/admin/view-edit-kursus.php?idJadwal=".$d["idJadwal"]."'>Ubah Jadwal</a></button>";
-                            echo "  <button><a href='../../backend/admin/proses-hapus-kursus.php?idJadwal=".$d["idJadwal"]."'>Hapus Jadwal</a></button>";
+                            echo "<button><a href='../../frontend/admin/view-edit-kursus.php?idJadwal=".$d["idJadwalKursus"]."'>Ubah Jadwal</a></button>";
+                            echo "  <button><a href='../../backend/admin/proses-hapus-kursus.php?idJadwal=".$d["idJadwalKursus"]."'>Hapus Jadwal</a></button>";
                         echo "</td>";
                     echo "</tr>";
                 }
