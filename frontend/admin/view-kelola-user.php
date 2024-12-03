@@ -151,19 +151,17 @@
         function logoutPage() {
             window.location.href = "../../backend/admin/logout.php";
         }
-
         function adminPage(kategori) {
             window.location.href = "../../frontend/admin/view-tampil-kursus.php?kategori=" + kategori;
-        }
-
-        function tambahData() {
-            window.location.href = "view-tambah-jadwal.php";
         }
         function kembaliDashboard() {
             window.location.href = "view-dashboard.php";
         }
-        function kelolaUser() {
-            window.location.href = "../../frontend/admin/view-kelola-user.php";
+        function kelolaJadwal(){
+            window.location.href = "view-kelola-jadwal.php";
+        }
+        function tambahUser(){
+            window.location.href = "view-tambah-user.php";
         }
     </script>
 </head>
@@ -172,7 +170,7 @@
     <div class="sidebar">
         <button onclick="adminPage('mobil')">Cek Kursus Mobil</button>
         <button onclick="adminPage('motor')">Cek Kursus Motor</button>
-        <button onclick="kelolaUser()">Kelola User</button>
+        <button onclick="kelolaJadwal()">Kelola Jadwal Tersedia</button>
         <button onclick="kembaliDashboard()">Dashboard Utama</button>
     </div>
 
@@ -188,30 +186,25 @@
                 include "../../backend/admin/be-admin.php";
 
                 $pk = new Admin();
-                $dtk = $pk->jadwalReady();
+                $dtk = $pk->tampilkanUser();
 
                 echo "<table>";
-                echo "<tr> <th>ID JADWAL</th> <th>NAMA JADWAL</th> <th>TANGGAL</th> <th>WAKTU</th> <th>AKSI</th></tr>";
+                echo "<tr> <th>ID USER</th> <th>NAMA</th> <th>PASSWORD</th> <th>AKSI</th></tr>";
 
-                if(empty($dtk)){
-                    echo "<table><tr><td colspan='7'><h3>Belum ada data</h3></td></tr></table>";
-                }else{
                 foreach ($dtk as $d) {
                     echo "<tr>";
-                        echo "<td>" .$d["idJadwal"]. "</td>";
-                        echo "<td>" .$d["namaJadwal"]. "</td>";
-                        echo "<td>" .$d["tanggal"]. "</td>";
-                        echo "<td>" .$d["waktu"]. "</td>";
+                        echo "<td>" .$d["idUser"]. "</td>";
+                        echo "<td>" .$d["nama"]. "</td>";
+                        echo "<td>" .$d["password"]. "</td>";
                         echo "<td>";
-                            echo "<button><a href='../../frontend/admin/view-edit-jadwal.php?idJadwal=".$d["idJadwal"]."'>Ubah Jadwal</a></button>";
-                            echo "  <button><a href='../../backend/admin/proses-hapus-jadwal.php?idJadwal=".$d["idJadwal"]."'>Hapus Jadwal</a></button>";
+                            echo "<button><a href='view-edit-user.php?idUser=".$d["idUser"]."'>Ubah Password</a></button>";
+                            echo "  <button><a href='../../backend/admin/proses-hapus-user.php?idUser=".$d["idUser"]."'>Hapus User</a></button>";
                         echo "</td>";
                     echo "</tr>";
                 }
                 echo "</table><br>";
-            }
             ?>
-            <button onclick="tambahData()">Tambah Jadwal</button>
+            <button onclick="tambahUser()">Tambah User</button>
         </div>
 
         <!-- FOOTER -->

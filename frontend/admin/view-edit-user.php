@@ -41,6 +41,7 @@
                 font-size: 14px;
             }
 
+            form input[type="password"],
             form input[type="text"],
             form input[type="date"],
             form input[type="time"],
@@ -95,45 +96,34 @@
         <?php
             include "../../backend/admin/be-admin.php";
 
-            //Membuat objek
+            // Membuat objek
             $pk = new Admin();
 
-            //Unboxing id dari link Ubah
-            $id = $_GET["idJadwalKursus"];
+            // Unboxing id dari link Ubah
+            $id = $_GET["idUser"];
             
-            //Memanggil method Select + Where
-            $dtk = $pk->tampilkanKursusByID($id);
+            // Memanggil method Select + Where
+            $dtk = $pk->tampilkanUserByID($id);
 
-            echo "<form method='post' action='../../backend/admin/proses-edit-kursus.php'>";
-            //Unboxing dengan data yang disajikan didalam form
+            echo "<form method='post' action='../../backend/admin/proses-edit-user.php'>";
+            
             foreach($dtk as $d) {
-                echo "ID : ".$d["idJadwalKursus"];
-                echo "<input type='hidden' name='txtId' value='".$d["idJadwalKursus"]."'>";
+                echo "ID : " . $d["idUser"];
+                echo "<input type='hidden' name='txtId' value='" . $d["idUser"] . "'>";
                 echo "<br><br>";
 
-                echo "Nama: ".$d["namaUser"];
-                echo "<input type='hidden' name='txtNama' value='".$d["namaUser"]."'>";
+                echo "Nama " . $d["nama"];
+                echo "<input type='hidden' name='txtNama' value='" . $d["nama"] . "'>";
                 echo "<br><br>";
 
-                echo "Kursus ";
-                echo "<select name='txtKursus'>";
-                echo "<option value='Mobil'" .($d["kursus"] == "mobil" ? " selected" : ""). ">Mobil</option>";
-                echo "<option value='Motor'" .($d["kursus"] == "motor" ? " selected" : ""). ">Motor</option>";
-                echo "</select>";
+                echo "Password ";
+                echo "<input type='password' name='txtPassword' value='" . $d["password"] . "'>";
                 echo "<br><br>";
 
-                echo "Tanggal ";
-                echo "<input type='date' name='txtTanggal' value='".$d["tanggal"]."'>";
-                echo "<br><br>";
-
-                echo "Waktu ";
-                echo "<input type='time' name='txtWaktu' value='".$d["waktu"]."'>";
-                echo "<br><br>";
-
-                echo "<input type='submit' value='Simpan'>";  
+                echo "<input type='submit' value='Simpan'>"; 
             }
             echo "</form>";
-        ?>     
+        ?>
 
         <!-- FOOTER -->
         <footer class="bg-white">

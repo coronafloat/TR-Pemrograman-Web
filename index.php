@@ -17,7 +17,7 @@
         }
 
         function userPage() {
-            window.location.href = "frontend/user/view-login-user.php";
+            window.location.href = "frontend/user/view-create-user.php";
         }
 
         function signUpPage() {

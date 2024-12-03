@@ -74,22 +74,37 @@
       </div>
     </section>
     <!-- End of Banner -->
-    
-    <!-- Tulisan "Layanan yang Tersedia" -->
-
-
-    <!-- <div class="flex items-center justify-center mt-2 my-4">
-      <p class="text-2xl text-center font-bold">Layanan yang Tersedia</p>
-    </div> -->
-
-
-    <!-- End of tulisan "Layanan yang Tersedia" -->
 
     <!-- SERVICE CARDS -->
-    <div class="flex items-center justify-center flex-row gap-4 mb-4">
-
-
-    </div>
+<!-- Deskripsi Kursus Mobil -->
+    <!-- Deskripsi Kursus Mobil -->
+<div class="max-w-screen-xl mx-auto px-4 py-8 text-center">
+    <h3 class="text-2xl font-bold text-gray-800">Kursus Mobil ProRider</h3>
+    <p class="mt-4 text-gray-600 text-lg leading-relaxed">
+        Di ProRider, kami menawarkan kursus mobil yang dirancang khusus untuk semua level pengemudi. 
+        Dengan instruktur yang berpengalaman dan metode pengajaran yang teruji, 
+        Anda akan belajar cara mengemudikan mobil dengan aman dan percaya diri. 
+        Kursus kami mencakup pelatihan teori dan praktik, serta persiapan untuk ujian SIM. 
+        Kami memahami bahwa setiap siswa memiliki kebutuhan unik, oleh karena itu kami menawarkan 
+        pendekatan pembelajaran yang disesuaikan dengan kemampuan dan tujuan Anda.
+    </p>
+    <p class="mt-4 text-gray-600 text-lg leading-relaxed">
+        Selama kursus, Anda akan mendapatkan pemahaman mendalam tentang aturan lalu lintas, 
+        teknik mengemudi yang aman, dan cara menangani situasi darurat di jalan. 
+        Instruktur kami tidak hanya mengajarkan keterampilan mengemudi, tetapi juga membangun 
+        kepercayaan diri Anda sebagai pengemudi. 
+        Kami percaya bahwa pengalaman belajar yang positif akan membentuk pengemudi yang bertanggung jawab.
+    </p>
+    <p class="mt-4 text-gray-600 text-lg leading-relaxed">
+        Dengan fleksibilitas jadwal dan sesi latihan yang dapat diatur, 
+        Anda dapat belajar mengemudi tanpa mengganggu aktivitas sehari-hari Anda. 
+        Bergabunglah dengan kami dan raih SIM Anda dalam waktu singkat, 
+        sambil menikmati proses belajar yang menyenangkan dan bermanfaat. 
+        Daftar sekarang dan mulailah perjalanan Anda menuju menjadi pengemudi yang handal!
+    </p>
+</div>
+<!-- End of Deskripsi Kursus Mobil -->
+<!-- End of Deskripsi Kursus Mobil -->
     <!-- End of SERVICE CARDS -->
 
     <!-- FOOTER -->

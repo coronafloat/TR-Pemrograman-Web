@@ -71,7 +71,7 @@ session_start();
     <!-- End of SIGN UP FORM -->
 
     <!-- Footer -->
-    <footer class="bg-white">
+    <footer class="bg-white fixed bottom-0 left-0 right-0">
         <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
             <div class="sm:flex sm:items-center sm:justify-between">
                 <div class="flex justify-center text-teal-600 sm:justify-start">

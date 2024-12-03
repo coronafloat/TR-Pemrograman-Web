@@ -74,22 +74,27 @@
       </div>
     </section>
     <!-- End of Banner -->
-    
-    <!-- Tulisan "Layanan yang Tersedia" -->
-
-
-    <!-- <div class="flex items-center justify-center mt-2 my-4">
-      <p class="text-2xl text-center font-bold">Layanan yang Tersedia</p>
-    </div> -->
-
-
-    <!-- End of tulisan "Layanan yang Tersedia" -->
 
     <!-- SERVICE CARDS -->
-    <div class="flex items-center justify-center flex-row gap-4 mb-4">
-
-
-    </div>
+<!-- Deskripsi Kursus Motor -->
+<div class="max-w-screen-xl mx-auto px-4 py-8 text-center">
+    <h3 class="text-2xl font-bold text-gray-800">Kursus Motor ProRider</h3>
+    <p class="mt-4 text-gray-600 text-lg leading-relaxed">
+        Di ProRider, kami juga menawarkan kursus motor yang dirancang untuk semua pengendara, baik pemula maupun yang berpengalaman. 
+        Instruktur kami yang berpengalaman akan membimbing Anda melalui setiap langkah, mulai dari pengenalan dasar hingga teknik berkendara yang lebih kompleks.
+    </p>
+    <p class="mt-4 text-gray-600 text-lg leading-relaxed">
+        Selama kursus, Anda akan mempelajari berbagai aspek penting, termasuk teknik mengemudi yang aman, pengendalian sepeda motor, 
+        serta cara menghadapi berbagai situasi di jalan. Kami percaya bahwa keselamatan adalah prioritas utama, 
+        dan oleh karena itu, kami menekankan pentingnya latihan yang konsisten dan penguasaan keterampilan mengemudi.
+    </p>
+    <p class="mt-4 text-gray-600 text-lg leading-relaxed">
+        Dengan jadwal yang fleksibel dan sesi praktik yang dapat disesuaikan, Anda dapat belajar tanpa mengganggu aktivitas sehari-hari Anda. 
+        Bergabunglah dengan kami dan jadilah pengendara motor yang handal, siap menghadapi tantangan di jalan raya. 
+        Daftar sekarang dan nikmati pengalaman belajar yang menyenangkan dan bermanfaat!
+    </p>
+</div>
+<!-- End of Deskripsi Kursus Motor -->
     <!-- End of SERVICE CARDS -->
 
     <!-- FOOTER -->

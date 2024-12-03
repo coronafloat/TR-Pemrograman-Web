@@ -1,3 +1,11 @@
+<?php
+    session_start();
+
+    if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] == false) {
+        header("Location: ../../frontend/admin/view-login.php");
+    }
+?>
+
 <html>
     <head>
         <title>Tambah Jadwal</title>
@@ -32,6 +40,7 @@
                 font-size: 14px;
             }
 
+            form input[type="password"],
             form input[type="text"],
             form select,
             form input[type="date"],
@@ -44,6 +53,7 @@
                 font-size: 14px;
             }
 
+            form input[type="password"]:focus,
             form input[type="text"]:focus,
             form select:focus,
             form input[type="date"]:focus,
@@ -51,6 +61,23 @@
                 border-color: #89A8B2;
                 outline: none;
                 box-shadow: 0 0 5px rgba(137, 168, 178, 0.5);
+            }
+
+            button {
+                background-color: #000;
+                color: #FFFFFF;
+                border: none;
+                padding: 12px 20px;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                width: 100%;
+                margin-top: 20px;
+            }
+
+            button:hover {
+                background-color: #3d3d3d;
             }
 
             form input[type="submit"] {
@@ -83,21 +110,23 @@
                 font-size: 14px;
             }
         </style>
+        <script>
+            function kelolaUser(){
+                window.location.href = "view-kelola-user.php";
+            }
+        </script>
     </head>
     <body>
-        <form method="post" action="../../backend/admin/proses-tambah-kursus.php">
-            ID  <input type="text" name="txtId" placeholder="Masukkan ID"><br><br>
-            Nama  <input type="text" name="txtNama" placeholder="Masukkan Nama"><br><br>
-            Kursus
-            <select name="txtKursus" id="namaKursus">
-                <option value="Mobil">Mobil</option>
-                <option value="Motor">Motor</option>
-            </select><br><br>
-            Tanggal <input type="date" name="txtTanggal"><br><br>
-            Waktu <input type="time" name="txtWaktu"><br><br>
+    <form method="post" action="../../backend/admin/proses-tambah-user.php">
+        <label for="tanggal">Nama</label>
+        <input type="text" name="txtNama" required><br><br>
 
-            <input type="submit" value="Simpan">
-        </form>
+        <label for="waktu">Password</label>
+        <input type="password" name="txtPassword" required><br><br>
+
+        <input type="submit" value="Simpan">
+        <button onclick="kelolaUser()">Batal</button>
+    </form>
 
         <!-- FOOTER -->
         <footer class="bg-white">

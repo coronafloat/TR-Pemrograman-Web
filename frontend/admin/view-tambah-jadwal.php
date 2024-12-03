@@ -8,8 +8,8 @@
 
 <html>
     <head>
-        <title>Ubah Jadwal</title>
-        <!-- <link rel="stylesheet" href="view-edit-kursus.css"> -->
+        <title>Tambah Jadwal</title>
+        <!-- <link rel="stylesheet" href="view-tambah-kursus.css"> -->
         <link rel="icon" href="../../assets/favicon-logo.png" type="image/png">
         <style>
             * {
@@ -28,7 +28,6 @@
                 padding: 20px;
             }
 
-            /* Form Container */
             form {
                 background-color: #FFFFFF;
                 border: 2px solid #E5E1DA;
@@ -42,15 +41,24 @@
             }
 
             form input[type="text"],
+            form select,
             form input[type="date"],
-            form input[type="time"],
-            form select {
+            form input[type="time"] {
                 width: 100%;
                 padding: 10px;
                 margin: 10px 0;
                 border: 1px solid #E5E1DA;
                 border-radius: 5px;
                 font-size: 14px;
+            }
+
+            form input[type="text"]:focus,
+            form select:focus,
+            form input[type="date"]:focus,
+            form input[type="time"]:focus {
+                border-color: #89A8B2;
+                outline: none;
+                box-shadow: 0 0 5px rgba(137, 168, 178, 0.5);
             }
 
             form input[type="submit"] {
@@ -70,20 +78,13 @@
                 background-color: #3d3d3d;
             }
 
-            form label {
-                display: block;
-                font-weight: bold;
-                margin-bottom: 5px;
-                color: #1b1b1b;
-            }
-
             .bg-white {
                 position: absolute;
                 display: flex;
                 justify-content: flex-end;
                 align-items: flex-end;  
                 text-align: right;
-                margin-top: 660px;        
+                margin-top: 680px;        
                 margin-bottom: 40px;
                 margin-right: 40px;
                 margin-left: 40px;
@@ -92,48 +93,21 @@
         </style>
     </head>
     <body>
-        <?php
-            include "../../backend/admin/be-admin.php";
+    <form method="post" action="../../backend/admin/proses-tambah-jadwal.php">
+        <label for="namaJadwal">Kursus</label>
+        <select name="txtJadwal" id="namaJadwal" required>
+            <option value="Mobil">Mobil</option>
+            <option value="Motor">Motor</option>
+        </select><br><br>
 
-            //Membuat objek
-            $pk = new Admin();
+        <label for="tanggal">Tanggal</label>
+        <input type="date" name="txtTanggal" required><br><br>
 
-            //Unboxing id dari link Ubah
-            $id = $_GET["idJadwalKursus"];
-            
-            //Memanggil method Select + Where
-            $dtk = $pk->tampilkanKursusByID($id);
+        <label for="waktu">Waktu</label>
+        <input type="time" name="txtWaktu" required><br><br>
 
-            echo "<form method='post' action='../../backend/admin/proses-edit-kursus.php'>";
-            //Unboxing dengan data yang disajikan didalam form
-            foreach($dtk as $d) {
-                echo "ID : ".$d["idJadwalKursus"];
-                echo "<input type='hidden' name='txtId' value='".$d["idJadwalKursus"]."'>";
-                echo "<br><br>";
-
-                echo "Nama: ".$d["namaUser"];
-                echo "<input type='hidden' name='txtNama' value='".$d["namaUser"]."'>";
-                echo "<br><br>";
-
-                echo "Kursus ";
-                echo "<select name='txtKursus'>";
-                echo "<option value='Mobil'" .($d["kursus"] == "mobil" ? " selected" : ""). ">Mobil</option>";
-                echo "<option value='Motor'" .($d["kursus"] == "motor" ? " selected" : ""). ">Motor</option>";
-                echo "</select>";
-                echo "<br><br>";
-
-                echo "Tanggal ";
-                echo "<input type='date' name='txtTanggal' value='".$d["tanggal"]."'>";
-                echo "<br><br>";
-
-                echo "Waktu ";
-                echo "<input type='time' name='txtWaktu' value='".$d["waktu"]."'>";
-                echo "<br><br>";
-
-                echo "<input type='submit' value='Simpan'>";  
-            }
-            echo "</form>";
-        ?>     
+    <input type="submit" value="Simpan">
+    </form>
 
         <!-- FOOTER -->
         <footer class="bg-white">

@@ -21,11 +21,6 @@ session_start();
         <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
         <form method="post" action="../../backend/admin/login-proses.php">
             <div class="mb-4">
-                <label for="id" class="block text-sm font-medium text-gray-700">ID</label>
-                <input type="text" name="id" id="id" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-500" placeholder="Masukkan ID">
-            </div>
-
-            <div class="mb-4">
                 <label for="nama" class="block text-sm font-medium text-gray-700">Nama</label>
                 <input type="text" name="nama" id="nama" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-500" placeholder="Masukkan Nama">
             </div>

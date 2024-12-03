@@ -1,3 +1,11 @@
+<?php
+    session_start();
+
+    if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] == false) {
+        header("Location: ../../frontend/admin/view-login.php");
+    }
+?>
+
 <html>
 <head>
     <title>Data Kursus</title>
@@ -125,6 +133,9 @@
                 echo "<tr> <th>ID JADWAL</th> <th>KURSUS</th> <th>NAMA</th> <th>TANGGAL</th> <th>WAKTU</th> </tr>";
 
                 // Menampilkan data kursus
+                if(empty($dtk)){
+                    echo "<table><tr><td colspan='7'><h3>Belum ada data</h3></td></tr></table>";
+                }else{
                 foreach ($dtk as $d) {
                     echo "<tr>";
                         echo "<td>" . $d["idJadwalKursus"] . "</td>";
@@ -135,6 +146,7 @@
                     echo "</tr>";
                 }
                 echo "</table><br>";
+            }
         ?>
     </div>
     <!-- FOOTER -->

@@ -156,12 +156,12 @@
             window.location.href = "../../frontend/admin/view-tampil-kursus.php?kategori=" + kategori;
         }
 
-        function tambahData() {
-            window.location.href = "../../frontend/admin/view-tambah-kursus.php";
-        }
-
         function kelolaJadwal() {
             window.location.href = "../../frontend/admin/view-kelola-jadwal.php";
+        }
+
+        function kelolaUser() {
+            window.location.href = "../../frontend/admin/view-kelola-user.php";
         }
     </script>
 </head>
@@ -170,7 +170,7 @@
     <div class="sidebar">
         <button onclick="adminPage('mobil')">Cek Kursus Mobil</button>
         <button onclick="adminPage('motor')">Cek Kursus Motor</button>
-        <button onclick="adminPage('motor')">Kelola User</button>
+        <button onclick="kelolaUser()">Kelola User</button>
         <button onclick="kelolaJadwal()">Kelola Jadwal Tersedia</button>
     </div>
 
@@ -189,8 +189,10 @@
                 $dtk = $pk->tampilkanKursus();
 
                 echo "<table>";
-                echo "<tr> <th>ID JADWAL</th> <th>ID USER</th> <th>KURSUS</th> <th>NAMA</th> <th>TANGGAL</th> <th>WAKTU</th> <th>AKSI</th> </tr>";
-
+                echo "<tr> <th>ID JADWAL KURSUS</th> <th>ID USER</th> <th>KURSUS</th> <th>NAMA</th> <th>TANGGAL</th> <th>WAKTU</th> <th>AKSI</th> </tr>";
+                if(empty($dtk)){
+                    echo "<table><tr><td colspan='7'><h3>Belum ada data</h3></td></tr></table>";
+                }else{
                 foreach ($dtk as $d) {
                     echo "<tr>";
                         echo "<td>" .$d["idJadwalKursus"]. "</td>";
@@ -200,14 +202,14 @@
                         echo "<td>" .$d["tanggal"]. "</td>";
                         echo "<td>" .$d["waktu"]. "</td>";
                         echo "<td>";
-                            echo "<button><a href='../../frontend/admin/view-edit-kursus.php?idJadwal=".$d["idJadwalKursus"]."'>Ubah Jadwal</a></button>";
-                            echo "  <button><a href='../../backend/admin/proses-hapus-kursus.php?idJadwal=".$d["idJadwalKursus"]."'>Hapus Jadwal</a></button>";
+                            echo "<button><a href='view-edit-kursus.php?idJadwalKursus=".$d["idJadwalKursus"]."'>Ubah Jadwal Kursus</a></button>";
+                            echo "  <button><a href='../../backend/admin/proses-hapus-kursus.php?idJadwal=".$d["idJadwalKursus"]."'>Hapus Jadwal Kursus</a></button>";
                         echo "</td>";
                     echo "</tr>";
                 }
                 echo "</table><br>";
+                }
             ?>
-            <button onclick="tambahData()">Tambah Jadwal</button>
         </div>
 
         <!-- FOOTER -->
