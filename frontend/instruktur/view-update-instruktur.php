@@ -19,14 +19,22 @@ $jadwalKursus = $ready->readJadwalKursus();
 <html>
 
 <head>
+<<<<<<< HEAD
     <title>Instruktur Kursus</title>
+=======
+    <title>Kursus</title>
+>>>>>>> 05c981b3022da70c60e83c9958f4894eafa445f2
     <!-- Menambahkan Favicon -->
     <link rel="icon" href="../../assets/favicon-logo.png" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
         function logOutPage() {
+<<<<<<< HEAD
             window.location.href = "logout-instruktur.php";
+=======
+            window.location.href = "index.php";
+>>>>>>> 05c981b3022da70c60e83c9958f4894eafa445f2
         }
     </script>
 </head>
@@ -73,7 +81,11 @@ $jadwalKursus = $ready->readJadwalKursus();
                             <th class="py-2 px-4 border-b">TANGGAL</th>
                             <th class="py-2 px-4 border-b">WAKTU</th>
                             <th class="py-2 px-4 border-b">STATUS</th>
+<<<<<<< HEAD
                             <th class="py-2 px-4 border-b">AKSI</th>
+=======
+                            <th class="py-2 px-4 border-b">AKTIVASI</th>
+>>>>>>> 05c981b3022da70c60e83c9958f4894eafa445f2
                         </tr>
                     </thead>
                     <tbody>
@@ -95,6 +107,7 @@ $jadwalKursus = $ready->readJadwalKursus();
                                 echo "<td class='py-2 px-4 border-b'>" . htmlspecialchars($jadwal["status"]) . "</td>";
 
                                 // Action
+<<<<<<< HEAD
                                 echo "<td class='py-2 px-4 border-b text-center'>"; // Tambahkan text-center untuk penataan
                                 echo "<div class='flex justify-center space-x-4'>"; // Membuat container flex untuk menata elemen
                                 echo "<a href='../../backend/instruktur/proses-update-instruktur.php?idJadwalKursus=" . urlencode($jadwal["idJadwalKursus"]) . "' class='text-blue-500 hover:underline'>
@@ -113,6 +126,14 @@ $jadwalKursus = $ready->readJadwalKursus();
                                 // </a>";
                                 // echo "</td>";
 
+=======
+                                echo "<td class='py-2 px-4 border-b'>";
+                                echo "<a href='../../backend/instruktur/proses-update-instruktur.php?idJadwalKursus=" . urlencode($jadwal["idJadwalKursus"]) . "' class='text-blue-500 hover:underline'>
+                                Verifikasi
+                                </a>";
+                                echo "</td>";
+
+>>>>>>> 05c981b3022da70c60e83c9958f4894eafa445f2
                                 echo "</tr>";
                             }
                         }

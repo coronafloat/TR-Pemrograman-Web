@@ -87,6 +87,7 @@ class Instruktur
             return false; // Gagal diupdate
         }
     }
+<<<<<<< HEAD
     //verification update method
     public function delete($idJadwalKursus)
     {
@@ -104,4 +105,6 @@ class Instruktur
             return false; // Gagal dihapus
         }
     }
+=======
+>>>>>>> 05c981b3022da70c60e83c9958f4894eafa445f2
 }
