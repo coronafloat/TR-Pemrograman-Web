@@ -10,23 +10,14 @@
   <!-- Menambahkan Favicon -->
   <link rel="icon" href="assets/favicon-logo.png" type="image/png">
 
-<<<<<<< HEAD
-        function userPage() {
-            window.location.href = "frontend/user/view-create-user.php";
-        }
-=======
-  <!--TODO: function java script untuk mengarahkan ke halaman login atau sign up user -->
   <script>
-    function adminPage() {
-      window.location.href = "frontend/admin/view-login.php";
+    function userPage() {
+            window.location.href = "frontend/user/view-create-user.php";
     }
->>>>>>> 05c981b3022da70c60e83c9958f4894eafa445f2
 
-    <
-    script >
-      function userPage() {
+    function userPage() {
         window.location.href = "frontend/user/view-create-user.php";
-      }
+    }
 
     function signUpPage() {
       window.location.href = "frontend/user/view-signup-user.php";
