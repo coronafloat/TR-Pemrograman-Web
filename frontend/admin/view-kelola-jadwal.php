@@ -159,9 +159,8 @@
         function tambahData() {
             window.location.href = "../../frontend/admin/view-tambah-kursus.php";
         }
-
-        function kelolaJadwal() {
-            window.location.href = "../../frontend/admin/view-kelola-jadwal.php";
+        function tambahData() {
+            window.location.href = "../../frontend/admin/view-tambah-kursus.php";
         }
     </script>
 </head>
@@ -171,7 +170,6 @@
         <button onclick="adminPage('mobil')">Cek Kursus Mobil</button>
         <button onclick="adminPage('motor')">Cek Kursus Motor</button>
         <button onclick="adminPage('motor')">Kelola User</button>
-        <button onclick="kelolaJadwal()">Kelola Jadwal Tersedia</button>
     </div>
 
     <div class="content">

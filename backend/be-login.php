@@ -12,36 +12,50 @@ class admin
     public function __construct()
     {
         $this->db = new PDO(
-            "mysql:host={$this->host};
-                dbname = {$this->name}",
+            "mysql:host={$this->host};dbname={$this->name}",
             $this->user,
             $this->pass
         );
     }
 
-    public function loginLogic($adminId, $adminName, $adminPassword)
+    public function loginLogic($userId, $userName, $userPassword)
     {
-
         try {
-            // Query untuk mendapatkan data admin berdasarkan id, nama, dan password
-            $query = "SELECT * FROM admin_profiles WHERE id = :id AND nama = :nama AND password = :password";
-            $stmt = $this->db->prepare($query);
+            // Query untuk admin
+            $queryAdmin = "SELECT * FROM admin_profiles WHERE id = :id AND nama = :nama AND password = :password";
+            $stmtAdmin = $this->db->prepare($queryAdmin);
 
-            // Bind parameter
-            $stmt->bindParam(':id', $adminId);
-            $stmt->bindParam(':nama', $adminName);
-            $stmt->bindParam(':password', $adminPassword);
+            // Bind parameter untuk admin
+            $stmtAdmin->bindParam(':id', $userId);
+            $stmtAdmin->bindParam(':nama', $userName);
+            $stmtAdmin->bindParam(':password', $userPassword);
 
-            $stmt->execute();
+            $stmtAdmin->execute();
 
-            // Cek apakah data ditemukan
-            if ($stmt->rowCount() > 0) {
-                // Jika validasi berhasil, arahkan ke halaman admin
-                header("Location: ../frontend/dashboard.php");
+            if ($stmtAdmin->rowCount() > 0) {
+                // Jika login sebagai admin berhasil
+                header("Location: ../frontend/view-dashboard.php");
                 exit();
             } else {
-                // Jika gagal, tampilkan pesan error
-                echo "ID, Nama, atau Password salah!";
+                // Query untuk user biasa
+                $queryUser = "SELECT * FROM user_profiles WHERE idUser = :id AND nama = :nama AND password = :password";
+                $stmtUser = $this->db->prepare($queryUser);
+
+                // Bind parameter untuk user
+                $stmtUser->bindParam(':id', $userId);
+                $stmtUser->bindParam(':nama', $userName);
+                $stmtUser->bindParam(':password', $userPassword);
+
+                $stmtUser->execute();
+
+                if ($stmtUser->rowCount() > 0) {
+                    // Jika login sebagai user berhasil
+                    header("Location: ../frontend/view-tambah-kursus.php");
+                    exit();
+                } else {
+                    // Jika kedua login gagal
+                    echo "ID, Nama, atau Password salah!";
+                }
             }
         } catch (PDOException $error) {
             die("Error : " . $error->getMessage());

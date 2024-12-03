@@ -1,17 +1,17 @@
-<?php
-session_start();
-?>
 <html>
-
 <head>
-    <title>Login</title>
+<title>Login</title>
     <!-- Menambahkan Favicon -->
     <link rel="icon" href="../../assets/favicon-logo.png" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
         function signUpPage() {
-            window.location.href = "view-signup-user.php";
+            window.location.href = "../../frontend/user/view-signup-user.php";
+        }
+
+        function loginUser() {
+            window.location.href = "../../frontend/user/view-create-user.php";
         }
     </script>
 </head>
@@ -29,9 +29,8 @@ session_start();
             <!-- Menu -->
             <div class="md:flex items-center space-x-6">
                 <a href="../../index.php" class="text-gray-700 font-medium hover:text-[#89A8B2]">Home</a>
-                <a href="#" class="text-gray-700 font-medium hover:text-[#89A8B2]">About</a>
-                <a href="#" class="text-gray-700 font-medium hover:text-[#89A8B2]">Contact Us</a>
-
+                <a href="about-us.php" class="text-gray-700 font-medium hover:text-[#89A8B2]">About</a>
+                <a href="#" onclick="window.open('https://wa.me/6287724061150?text=Hi, Saya ingin menghubungi Anda!', '_blank')" class="text-gray-700 font-medium hover:text-[#89A8B2]">Contact Us</a>
                 <!-- Button Sign Up -->
                 <button onclick="signUpPage()" class="flex items-center bg-black text-white font-medium rounded-lg px-4 py-2 hover:bg-[#3E4143] transition duration-300">
                     Sign up
@@ -46,10 +45,10 @@ session_start();
         <div class="bg-white rounded-lg shadow-md p-8 w-96">
             <h1 class="text-2xl font-semibold text-center mb-6">Login User</h1>
             <form method="post" action="../../backend/user/proses-login-user.php">
-                <div class="mb-4">
+                <!-- <div class="mb-4">
                     <label class="block text-gray-700" for="idUser">ID</label>
                     <input type="text" name="idUser" id="idUser" required class="mt-1 p-2 border border-gray-300 rounded w-full">
-                </div>
+                </div> -->
 
                 <div class="mb-4">
                     <label class="block text-gray-700" for="nama">Nama</label>
@@ -61,12 +60,8 @@ session_start();
                     <input type="password" name="password" id="password" required class="mt-1 p-2 border border-gray-300 rounded w-full">
                 </div>
 
-                <div class="mb-4 text-center">
-                    <a href="view-signup-user.php" class="text-[#89A8B2] hover:underline hover:text-black">Don't have an account?</a>
-                </div>
-
                 <!-- SUBMIT BUTTON -->
-                <button type="submit" class="w-full bg-black text-white font-semibold py-2 rounded-lg hover:bg-[#3E4143] transition duration-200">
+                <button onclick="loginUser()" type="submit" class="w-full bg-black text-white font-semibold py-2 rounded-lg hover:bg-[#3E4143] transition duration-200">
                     Submit
                 </button>
             </form>
@@ -81,7 +76,6 @@ session_start();
                 <div class="flex justify-center text-teal-600 sm:justify-start">
                     <img src="../../assets/logo-prorider.png" alt="Logo ProRider" class="h-12">
                 </div>
-
                 <p class="mt-4 text-center text-sm text-black lg:mt-0 lg:text-right">
                     Copyright &copy; 2024. All rights reserved.
                 </p>

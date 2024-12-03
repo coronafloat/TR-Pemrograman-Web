@@ -4,12 +4,12 @@
     //Membuat Objek
     $pk = new Admin();
 
-    $id = $_GET["id"];
+    $id = $_GET["idJadwal"];
 
     $status = $pk->hapusKursus($id);
 
     if($status==true)
-        header("Location:../../frontend/admin/view-tampil-kursus.php");
+        header("Location:../../frontend/admin/view-dashboard.php");
     else 
         echo "Gagal Menghapus Data.";
 ?>

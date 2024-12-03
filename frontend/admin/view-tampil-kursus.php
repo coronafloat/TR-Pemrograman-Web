@@ -40,12 +40,12 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.2s;
-            background-color: #89A8B2;
+            background-color: #000;
             color: white;
         }
 
         .header-container button:hover {
-            background-color: #6D8A96;
+            background-color: #3d3d3d;
             color: white;
             border-radius: 5px;
         }
@@ -70,7 +70,7 @@
         }
 
         th {
-            background-color: #89A8B2;
+            background-color: #000;
             color: #fff;
             font-weight: bold;
         }
@@ -85,7 +85,7 @@
             justify-content: flex-end;
             align-items: flex-end;  
             text-align: right;
-            margin-top: 580px;        
+            margin-top: 560px;        
             margin-bottom: 40px;
             margin-right: 40px;
             margin-left: 40px;
@@ -122,13 +122,14 @@
 
             // Membuat tabel untuk menampilkan data
                 echo "<table border='1'>";
-                echo "<tr> <th>NAMA</th> <th>KURSUS</th> <th>TANGGAL</th> <th>WAKTU</th> </tr>";
+                echo "<tr> <th>ID JADWAL</th> <th>KURSUS</th> <th>NAMA</th> <th>TANGGAL</th> <th>WAKTU</th> </tr>";
 
                 // Menampilkan data kursus
                 foreach ($dtk as $d) {
                     echo "<tr>";
+                        echo "<td>" . $d["idJadwalKursus"] . "</td>";
+                        echo "<td>" . $d["namaKursus"] . "</td>";
                         echo "<td>" . $d["namaUser"] . "</td>";
-                        echo "<td>" . $d["kursus"] . "</td>";
                         echo "<td>" . $d["tanggal"] . "</td>";
                         echo "<td>" . $d["waktu"] . "</td>";
                     echo "</tr>";
