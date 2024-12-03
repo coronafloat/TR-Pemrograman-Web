@@ -12,7 +12,7 @@ $namaInstruktur = $_SESSION["instruktur_name"];
 $ready = new Instruktur();
 
 //call method
-$updateMethod = $ready->update($_SESSION["instruktur_id"]);
+$jadwalKursus = $ready->readJadwalKursus();
 
 ?>
 
@@ -26,7 +26,7 @@ $updateMethod = $ready->update($_SESSION["instruktur_id"]);
 
     <script>
         function logOutPage() {
-            window.location.href = "../../backend/user/logout-user.php";
+            window.location.href = "index.php";
         }
     </script>
 </head>
@@ -51,7 +51,7 @@ $updateMethod = $ready->update($_SESSION["instruktur_id"]);
                 </button>
 
                 <!-- TODO: Ambil nama dari user yang login -->
-                <p class="font-bold">Welcome, <?php echo htmlspecialchars($namaUser); ?>!</p>
+                <p class="font-bold">Welcome, <?php echo htmlspecialchars($namaInstruktur); ?>!</p>
             </div>
         </div>
     </nav>
@@ -61,42 +61,53 @@ $updateMethod = $ready->update($_SESSION["instruktur_id"]);
     <div class="flex flex-col items-center">
         <h2 class="text-2xl font-semibold mb-4">Jadwal Kursus</h2>
         <div class="overflow-x-auto w-full max-w-screen-lg">
-            <table class="min-w-full bg-white border border-gray-300">
-                <thead>
-                    <tr class="bg-black text-white text-center">
-                        <th class="py-2 px-4 border-b">ID JADWAL</th>
-                        <th class="py-2 px-4 border-b">NAMA JADWAL</th>
-                        <th class="py-2 px-4 border-b">TANGGAL</th>
-                        <th class="py-2 px-4 border-b">WAKTU</th>
-                        <th class="py-2 px-4 border-b">ACTION</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    //unboxing array
-                    foreach ($update as $jadwal) {
-                        echo "<tr class='hover:bg-gray-100 text-center'>";
-                        echo "<td class='py-2 px-4 border-b'>" . htmlspecialchars($jadwal["idJadwal"]) . "</td>";
-                        echo "<td class='py-2 px-4 border-b'>" . htmlspecialchars($jadwal["namaJadwal"]) . "</td>";
-                        echo "<td class='py-2 px-4 border-b'>" . htmlspecialchars($jadwal["tanggal"]) . "</td>";
-                        echo "<td class='py-2 px-4 border-b'>" . htmlspecialchars($jadwal["waktu"]) . "</td>";
+            <div class="max-h-96 overflow-y-auto relative"> <!-- Pembungkus untuk scroll -->
+                <table class="min-w-full bg-white border border-gray-300">
+                    <thead class="bg-black text-white sticky top-0"> <!-- Sticky header -->
+                        <tr class="text-center">
+                            <th class="py-2 px-4 border-b">ID JADWAL KURSUS</th>
+                            <th class="py-2 px-4 border-b">ID USER</th>
+                            <th class="py-2 px-4 border-b">NAMA KURSUS</th>
+                            <th class="py-2 px-4 border-b">NAMA USER</th>
+                            <th class="py-2 px-4 border-b">ID JADWAL</th>
+                            <th class="py-2 px-4 border-b">TANGGAL</th>
+                            <th class="py-2 px-4 border-b">WAKTU</th>
+                            <th class="py-2 px-4 border-b">STATUS</th>
+                            <th class="py-2 px-4 border-b">AKTIVASI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if (empty($jadwalKursus)) {
+                            // Jika tidak ada data
+                            echo "<tr><td colspan='9' class='py-2 px-4 text-center border-b'>Tidak ada data</td></tr>";
+                        } else {
+                            //unboxing array
+                            foreach ($jadwalKursus as $jadwal) {
+                                echo "<tr class='hover:bg-gray-100 text-center'>";
+                                echo "<td class='py-2 px-4 border-b'>" . htmlspecialchars($jadwal["idJadwalKursus"]) . "</td>";
+                                echo "<td class='py-2 px-4 border-b'>" . htmlspecialchars($jadwal["idUser"]) . "</td>";
+                                echo "<td class='py-2 px-4 border-b'>" . htmlspecialchars($jadwal["namaKursus"]) . "</td>";
+                                echo "<td class='py-2 px-4 border-b'>" . htmlspecialchars($jadwal["namaUser"]) . "</td>";
+                                echo "<td class='py-2 px-4 border-b'>" . htmlspecialchars($jadwal["idJadwal"]) . "</td>";
+                                echo "<td class='py-2 px-4 border-b'>" . htmlspecialchars($jadwal["tanggal"]) . "</td>";
+                                echo "<td class='py-2 px-4 border-b'>" . htmlspecialchars($jadwal["waktu"]) . "</td>";
+                                echo "<td class='py-2 px-4 border-b'>" . htmlspecialchars($jadwal["status"]) . "</td>";
 
-                        // Action
-                        echo "<td class='py-2 px-4 border-b'>";
-                        echo "<a href='../../backend/user/proses-create-user.php?id=" . urlencode($jadwal["idJadwal"]) .
-                            "&idUser=" . urlencode($_SESSION["user_id"]) .
-                            "&namaKursus=" . urlencode($jadwal["namaJadwal"]) .
-                            "&namaUser=" . urlencode($_SESSION["user_name"]) .
-                            "&tanggal=" . urlencode($jadwal["tanggal"]) .
-                            "&waktu=" . urlencode($jadwal["waktu"]) .
-                            "&status=" . urlencode("request") . "' class='text-blue-500 hover:underline'>Tambah</a>";
-                        echo "</td>";
+                                // Action
+                                echo "<td class='py-2 px-4 border-b'>";
+                                echo "<a href='../../backend/instruktur/proses-update-instruktur.php?idJadwalKursus=" . urlencode($jadwal["idJadwalKursus"]) . "' class='text-blue-500 hover:underline'>
+                                Verifikasi
+                                </a>";
+                                echo "</td>";
 
-                        echo "</tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
+                                echo "</tr>";
+                            }
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <!-- End of Main Content -->

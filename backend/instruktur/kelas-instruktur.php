@@ -25,6 +25,50 @@ class Instruktur
         );
     }
 
+    // Login Method
+    public function loginLogic($nama, $password)
+    {
+        try {
+            // Query untuk mendapatkan data admin berdasarkan id, nama, dan password
+            $query = "SELECT * FROM instruktur_profiles WHERE nama = :nama AND password = :password";
+            $stmt = $this->db->prepare($query);
+
+            // Bind parameter
+            $stmt->bindParam(':nama', $nama);
+            $stmt->bindParam(':password', $password);
+
+            // Jalankan query
+            $stmt->execute();
+
+            // Ambil data
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // Jika ada data yang ditemukan
+            if ($result) {
+                return true; // Login berhasil
+            } else {
+                return false; // Login gagal
+            }
+        } catch (PDOException $error) {
+            die("Error: " . $error->getMessage());
+        }
+    }
+
+    // READ
+    public function readJadwalKursus()
+    {
+        //query SQL
+        $query = $this->db->prepare("SELECT * FROM jadwal_kursus_user");
+
+        //menjalankan Query
+        $query->execute();
+
+        //meletakkan hasil query ke array
+        $data = $query->fetchAll();
+
+        return $data;
+    }
+
     //verification update method
     public function update($idJadwalKursus)
     {
