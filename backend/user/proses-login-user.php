@@ -1,3 +1,10 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </head>
+    <body></body>
+</html>
+
 <?php
 include "kelas-user.php";
 session_start();
@@ -27,7 +34,19 @@ if ($status === true) {
         $_SESSION["user_logged_in"] = true;
         $_SESSION["user_id"] = $userData['idUser']; // Simpan ID pengguna
         $_SESSION["user_name"] = $namaProses;
-        header("Location: ../../frontend/user/view-create-user.php");
+        echo"<script>
+                Swal.fire({
+                        title: 'Berhasil!',
+                        text: 'Pendaftaran Berhasil!, Silahkan Login',
+                        icon: 'success',
+                        confirmButtonColor: '#000000'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '../../frontend/user/view-create-user.php';
+                    }
+                });
+            </script>";
+        //header("Location: ../../frontend/user/view-create-user.php");
         exit();
     } else {
         echo "<script>
