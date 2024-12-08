@@ -1,3 +1,11 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </head>
+    <body></body>
+</html>
+
+
 <?php
 
     class User
@@ -81,10 +89,18 @@
             $stmtInsert->execute();
 
             // Setelah pendaftaran berhasil, beri tahu user dan arahkan mereka ke halaman login
-            echo "<script>
-                        alert('Pendaftaran berhasil. Silakan login.'); 
-                        window.location.href='../../frontend/user/view-login-user.php';
-                    </script>";
+            echo"<script>
+                Swal.fire({
+                        title: 'Berhasil!',
+                        text: 'Pendaftaran Berhasil!, Silahkan Login',
+                        icon: 'success',
+                        confirmButtonColor: '#000000'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '../../frontend/user/view-login-user.php';
+                    }
+                });
+            </script>";
         } catch (PDOException $error) {
                 die("Error: " . $error->getMessage());
         }
